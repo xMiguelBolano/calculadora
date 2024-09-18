@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Calculadora</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+
+    </style>
+    </head>
+
+    <body>
+        <div>
+            <input id="caja1">
+            <label id="signo"></label>
+            <input id="caja2">
+            <label>=</label>
+            <input id="caja3">
+        </div>
+
+        <div>
+            <button class="boton" onclick="apendSimbol('1')">1</button>
+            <button class="boton" onclick="apendSimbol('2')">2</button>
+            <button class="boton" onclick="apendSimbol('3')">3</button>
+            <button class="boton" onclick="apendOperator('+')">+</button>
+            <button class="boton" onclick="cambiarCaja()">⇔</button>
+
+        </div>
+        <div>
+            <button class="boton" onclick="apendSimbol('4')">4</button>
+            <button class="boton" onclick="apendSimbol('5')">5</button>
+            <button class="boton" onclick="apendSimbol('6')">6</button>
+            <button class="boton" onclick="apendOperator('-')">-</button>
+            <button class="boton" onclick="apendResultado('=')">=</button>
+        </div>
+        <div>
+            <button class="boton" onclick="apendSimbol('7')">7</button>
+            <button class="boton" onclick="apendSimbol('8')">8</button>
+            <button class="boton" onclick="apendSimbol('9')">9</button>
+            <button class="boton" onclick="apendOperator('/')">/</button>
+        </div>
+        <div>
+            <button class="boton" onclick="apendSimbol('.')">.</button>
+            <button class="boton" onclick="apendSimbol('0')">0</button>
+            <button class="boton" onclick="removeLast()">←</button>
+            <button class="boton" onclick="apendOperator('*')">*</button>
+        </div>
+
+        <script>
+            function apendSimbol(){
+
+            }
+
+            function apendOperator(){
+
+            }
+
+            function removeLast(){
+
+            }
+            
+            function apendResultado(){
+
+            }
+        </script>
+    </body>
+</html>
