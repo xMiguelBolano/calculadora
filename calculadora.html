@@ -14,7 +14,7 @@
         }
 
         .calculadora{
-            width: 600px;
+            width: 650px;
             height: 470px;
             background-color: rgb(50, 177, 50);
             border-radius: 32px;
@@ -46,7 +46,11 @@
             top: 50px;
         }
 
-        .Rtda{
+        .operador{
+            font-size: 60px;
+        }
+
+        .signo{
             font-size: 70px;
         }
 
@@ -62,6 +66,7 @@
             font-size: 23px;
             box-shadow: 5px 5px 10px -3px black;
         }
+
         .boton-signo{
             width: 97px;
             height: 60px;
@@ -82,9 +87,9 @@
             <div class="calculadora">
                 <div class="div">
                     <input id="caja1" class="caja">
-                    <label id="signo"></label>
+                    <label id="operador" class= "operador"></label>
                     <input id="caja2" class="caja">
-                    <label class="Rtda">=</label>
+                    <label class="signo">=</label>
                     <input id="caja3" class="caja">
                 </div>
         
@@ -119,20 +124,49 @@
         </div>
 
         <script>
-            function apendSimbol() {
-
+            let contenidoOp1 = '';
+            let contenidoOp2 = '';
+            let caja1 = true;
+            let op1 = document.getElementById('caja1');
+            let op2 = document.getElementById('caja2');
+            let operacion = document.getElementById('operador');
+            let operador = '+';
+            let operadorActual = '';
+            function apendSimbol(x) {
+                if (caja1) {
+                    contenidoOp1 += x;
+                    op1.value = contenidoOp1;                   
+                } else {
+                    contenidoOp2 += x;
+                    op2.value = contenidoOp2;                    
+                }
             }
 
-            function apendOperator(){
+            function removeLast() {
+                if (caja1) {
+                    contenidoOp1 = contenidoOp1.slice(0, -1);
+                    op1.value = contenidoOp1;
+
+                } else {
+                    contenidoOp2 = contenidoOp2.slice(0, -1);
+                    op2.value = contenidoOp2;
+                }
 
             }
-
-            function removeLast(){
-
+            function apendOperator(o) {
+                operadorActual = o;
+                operacion.innerHTML = operadorActual;
             }
-            
-            function apendResultado(){
+            function cambiarCaja() {
+                caja1 = !caja1;
+                if (caja1) {
 
+                    op1.classList.add("resaltado");
+                    op2.classList.remove("resaltado");
+                } else {
+                    op2.classList.add("resaltado");
+                    op1.classList.remove("resaltado");
+                }
             }
         </script>
     </body>
