@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <style>
+        body{
+            background-color: bisque;
+
+        }
         .contenedor{
             display: flex;
             justify-content: center;
@@ -41,8 +45,7 @@
         .div_2{
             position: relative;
             display: flex;
-            justify-content: center;
-            left: -54px;
+            justify-content: center;          
             top: 50px;
         }
 
@@ -79,6 +82,9 @@
             font-size: 23px;
             box-shadow: 5px 5px 10px -3px black;
         }
+        .resaltado{
+            border: solid 2px black;
+        }
     </style>
     </head>
 
@@ -86,11 +92,11 @@
         <div class="contenedor">
             <div class="calculadora">
                 <div class="div">
-                    <input id="caja1" class="caja">
-                    <label id="operador" class= "operador"></label>
-                    <input id="caja2" class="caja">
+                    <input id="caja1" class="caja" disabled>
+                    <label id="operador" class= "operador" ></label>
+                    <input id="caja2" class="caja"  disabled >
                     <label class="signo">=</label>
-                    <input id="caja3" class="caja">
+                    <input id="caja3" class="caja" disabled>
                 </div>
         
                 <div class="div">
@@ -113,12 +119,15 @@
                     <button class="boton" onclick="apendSimbol('8')">8</button>
                     <button class="boton" onclick="apendSimbol('9')">9</button>
                     <button class="boton-signo" onclick="apendOperator('*')">*</button>
+                    <button class="boton-signo" onclick="removeLast()">←</button>
+                    
                 </div>
                 <div class="div_2">
+                    <button class="boton" onclick="apendSimbol('00')">00</button>
                     <button class="boton" onclick="apendSimbol('0')">0</button>
                     <button class="boton" onclick="apendSimbol('.')">.</button>
-                    <button class="boton-signo" onclick="removeLast()">←</button>
                     <button class="boton-signo" onclick="apendOperator('/')">/</button>
+                    <button class="boton-signo" onclick="removeAll()">C</button>
                 </div>
             </div>
         </div>
@@ -130,8 +139,11 @@
             let op1 = document.getElementById('caja1');
             let op2 = document.getElementById('caja2');
             let operacion = document.getElementById('operador');
+            let caja3 = document.getElementById('caja3');
+            let contenidoCaja3 = '';
             let operador = '+';
             let operadorActual = '';
+           
             function apendSimbol(x) {
                 if (caja1) {
                     contenidoOp1 += x;
@@ -153,10 +165,12 @@
                 }
 
             }
+            
             function apendOperator(o) {
                 operadorActual = o;
                 operacion.innerHTML = operadorActual;
             }
+
             function cambiarCaja() {
                 caja1 = !caja1;
                 if (caja1) {
@@ -167,6 +181,29 @@
                     op2.classList.add("resaltado");
                     op1.classList.remove("resaltado");
                 }
+            }
+
+            function apendResultado() {
+                if (operadorActual === '+') {
+                    contenidoCaja3 = Number(contenidoOp1) + Number(contenidoOp2);
+                    caja3.value = contenidoCaja3;
+                }
+                if (operadorActual === '-') {
+                    contenidoCaja3 = Number(contenidoOp1) - Number(contenidoOp2);
+                    caja3.value = contenidoCaja3;
+                } 
+                if (operadorActual === '/') {
+                    contenidoCaja3 = contenidoOp1 / contenidoOp2;
+                    caja3.value = contenidoCaja3;
+                } 
+                if (operadorActual === '*') {
+                    contenidoCaja3 = contenidoOp1 * contenidoOp2;
+                    caja3.value = contenidoCaja3;
+                }  
+            }
+
+            function removeAll() {
+                location.reload();  
             }
         </script>
     </body>
